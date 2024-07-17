@@ -26,12 +26,11 @@ func main() {
 		if ok_1 && ok_2 {
 			result, err := calculating(val_1, val_2, operation)
 			if err != nil {
-				fmt.Println(err)
-				break
+				panic(err)
 
 			} else if result < 1 {
-				fmt.Println("Ошибка! Значение не положительное")
-				break
+				panic("Ошибка! Значение не положительное")
+
 			} else {
 				fmt.Print("Результат:")
 				fmt.Println(intToRoman(result))
@@ -44,18 +43,16 @@ func main() {
 				if (val_1 > 0 && val_1 <= 10) && (val_2 > 0 && val_2 <= 10) {
 					result, err := calculating(val_1, val_2, operation)
 					if err != nil {
-						fmt.Println(err)
-						break
+						panic(err)
 					} else {
 						fmt.Printf("Результат: %v\n", result)
 					}
 				} else {
-					fmt.Println("Некорректные значения, попробуйте еще раз")
-					break
+					panic("Некорректные значения, попробуйте еще раз")
+
 				}
 			} else {
-				fmt.Println("Некорректные значения, попробуйте еще раз")
-				break
+				panic("Некорректные значения, попробуйте еще раз")
 			}
 		}
 	}
