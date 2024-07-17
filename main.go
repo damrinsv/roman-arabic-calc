@@ -4,25 +4,35 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 func main() {
 	var a, b, operation string
 
 	for {
+		var input string
+
 		fmt.Print("> ")
-		fmt.Scanln(&a, &operation, &b)
+		fmt.Scanln(&input)
+
+		parts := strings.Fields(input)
+		if len(parts) != 3 {
+			panic("Некорректный ввод")
+		}
+
+		a, b, operation = parts[0], parts[1], parts[2]
 
 		//проверка ввода трех значений
 		if a == "" || b == "" || operation == "" {
-			fmt.Println("Некорректный ввод")
-			break
+			panic("Некорректный ввод")
 		}
 		//маппинг арабских и римских цифр
 		roman := map[string]int{"I": 1, "II": 2, "III": 3, "IV": 4, "V": 5, "VI": 6, "VII": 7, "VIII": 8, "IX": 9, "X": 10}
 
 		val_1, ok_1 := roman[a]
 		val_2, ok_2 := roman[b]
+
 		if ok_1 && ok_2 {
 			result, err := calculating(val_1, val_2, operation)
 			if err != nil {
